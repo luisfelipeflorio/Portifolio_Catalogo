@@ -23,25 +23,25 @@
 
 ---
 
-### Sprint 2 — App Catalog: Models e Admin
+### [X] Sprint 2 — App Catalog: Models e Admin
 
 #### Tarefa 2.1 — Criar a app `catalog`
-- [ ] **2.1.1** Executar `python manage.py startapp catalog`
-- [ ] **2.1.2** Adicionar `'catalog'` a `INSTALLED_APPS` em `settings.py`
+- [x] **2.1.1** Executar `python manage.py startapp catalog`
+- [x] **2.1.2** Adicionar `'catalog'` a `INSTALLED_APPS` em `settings.py`
 
 #### Tarefa 2.2 — Criar model `Category`
-- [ ] **2.2.1** Abrir `catalog/models.py` e importar `models` e `slugify`
-- [ ] **2.2.2** Criar classe `Category(models.Model)` com campos:
+- [x] **2.2.1** Abrir `catalog/models.py` e importar `models` e `slugify`
+- [x] **2.2.2** Criar classe `Category(models.Model)` com campos:
   - `name` — `CharField(max_length=100)`
   - `slug` — `SlugField(unique=True, blank=True)`
   - `created_at` — `DateTimeField(auto_now_add=True)`
   - `updated_at` — `DateTimeField(auto_now=True)`
-- [ ] **2.2.3** Implementar `__str__` retornando `self.name`
-- [ ] **2.2.4** Implementar `save()` sobrescrito que chama `slugify(self.name)` se `slug` estiver vazio
-- [ ] **2.2.5** Adicionar `class Meta` com `verbose_name = 'Categoria'` e `verbose_name_plural = 'Categorias'`
+- [x] **2.2.3** Implementar `__str__` retornando `self.name`
+- [x] **2.2.4** Implementar `save()` sobrescrito que chama `slugify(self.name)` se `slug` estiver vazio
+- [x] **2.2.5** Adicionar `class Meta` com `verbose_name = 'Categoria'` e `verbose_name_plural = 'Categorias'`
 
 #### Tarefa 2.3 — Criar model `Product`
-- [ ] **2.3.1** Criar classe `Product(models.Model)` com campos:
+- [x] **2.3.1** Criar classe `Product(models.Model)` com campos:
   - `category` — `ForeignKey('Category', on_delete=models.PROTECT, related_name='products')`
   - `name` — `CharField(max_length=200)`
   - `slug` — `SlugField(unique=True, blank=True, max_length=220)`
@@ -52,38 +52,38 @@
   - `is_featured` — `BooleanField(default=False)`
   - `created_at` — `DateTimeField(auto_now_add=True)`
   - `updated_at` — `DateTimeField(auto_now=True)`
-- [ ] **2.3.2** Implementar `__str__` retornando `self.name`
-- [ ] **2.3.3** Implementar `save()` sobrescrito que gera `slug` a partir do `name` se vazio
-- [ ] **2.3.4** Implementar `get_absolute_url()` retornando `reverse('catalog:product_detail', kwargs={'slug': self.slug})`
-- [ ] **2.3.5** Adicionar `class Meta` com `verbose_name = 'Produto'`, `verbose_name_plural = 'Produtos'` e `ordering = ['-created_at']`
+- [x] **2.3.2** Implementar `__str__` retornando `self.name`
+- [x] **2.3.3** Implementar `save()` sobrescrito que gera `slug` a partir do `name` se vazio
+- [x] **2.3.4** Implementar `get_absolute_url()` retornando `reverse('catalog:product_detail', kwargs={'slug': self.slug})`
+- [x] **2.3.5** Adicionar `class Meta` com `verbose_name = 'Produto'`, `verbose_name_plural = 'Produtos'` e `ordering = ['-created_at']`
 
 #### Tarefa 2.4 — Instalar dependência para ImageField
-- [ ] **2.4.1** Executar `pip install Pillow`
-- [ ] **2.4.2** Verificar que `Pillow` está instalado com `pip show Pillow`
+- [x] **2.4.1** Executar `pip install Pillow`
+- [x] **2.4.2** Verificar que `Pillow` está instalado com `pip show Pillow`
 
 #### Tarefa 2.5 — Criar e aplicar migrations
-- [ ] **2.5.1** Executar `python manage.py makemigrations catalog`
-- [ ] **2.5.2** Executar `python manage.py migrate`
-- [ ] **2.5.3** Verificar que as tabelas foram criadas sem erros
+- [x] **2.5.1** Executar `python manage.py makemigrations catalog`
+- [x] **2.5.2** Executar `python manage.py migrate`
+- [x] **2.5.3** Verificar que as tabelas foram criadas sem erros
 
 #### Tarefa 2.6 — Registrar models no Django Admin
-- [ ] **2.6.1** Abrir `catalog/admin.py`
-- [ ] **2.6.2** Criar classe `CategoryAdmin(admin.ModelAdmin)` com:
+- [x] **2.6.1** Abrir `catalog/admin.py`
+- [x] **2.6.2** Criar classe `CategoryAdmin(admin.ModelAdmin)` com:
   - `list_display = ['name', 'slug', 'created_at']`
   - `prepopulated_fields = {'slug': ('name',)}`
   - `search_fields = ['name']`
-- [ ] **2.6.3** Criar classe `ProductAdmin(admin.ModelAdmin)` com:
+- [x] **2.6.3** Criar classe `ProductAdmin(admin.ModelAdmin)` com:
   - `list_display = ['name', 'category', 'price', 'is_available', 'is_featured', 'created_at']`
   - `list_filter = ['category', 'is_available', 'is_featured']`
   - `prepopulated_fields = {'slug': ('name',)}`
   - `search_fields = ['name', 'description']`
   - `list_editable = ['is_available', 'is_featured']`
-- [ ] **2.6.4** Registrar ambos com `admin.site.register(Category, CategoryAdmin)` e `admin.site.register(Product, ProductAdmin)`
+- [x] **2.6.4** Registrar ambos com `admin.site.register(Category, CategoryAdmin)` e `admin.site.register(Product, ProductAdmin)`
 
-#### Tarefa 2.7 — Criar superusuário e testar o Admin
-- [ ] **2.7.1** Executar `python manage.py createsuperuser` e definir credenciais
-- [ ] **2.7.2** Acessar `/admin/` e verificar que `Category` e `Product` aparecem
-- [ ] **2.7.3** Cadastrar ao menos 2 categorias e 4 produtos de teste com imagens
+#### [X] Tarefa 2.7 — Criar superusuário e testar o Admin
+- [x] **2.7.1** Executar `python manage.py createsuperuser` e definir credenciais
+- [x] **2.7.2** Acessar `/admin/` e verificar que `Category` e `Product` aparecem
+- [x] **2.7.3** Cadastrar ao menos 2 categorias e 4 produtos de teste com imagens
 
 ---
 
