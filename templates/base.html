@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Confeitaria Artesanal{% endblock %}</title>
+    
+    <!-- Google Fonts: Playfair Display + Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#6B3A2A',
+                        'primary-dark': '#4A2318',
+                        'accent': '#C9A227',
+                        'background': '#111111',
+                        'surface': '#1E1A18',
+                        'surface-light': '#2C2420',
+                        'text-primary': '#F5E6C8',
+                        'text-secondary': '#A89880',
+                        'border': '#3D2E24',
+                        'success': '#4A7C59',
+                        'error': '#CC2936',
+                    },
+                    fontFamily: {
+                        'playfair': ['"Playfair Display"', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-[#111111] text-[#F5E6C8] font-['Inter'];
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#111111] text-[#F5E6C8] font-['Inter']">
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

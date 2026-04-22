@@ -1,25 +1,25 @@
-### Sprint 1 — Setup e Configuração Base
+### [X] Sprint 1 — Setup e Configuração Base
 
-#### Tarefa 1.1 — Inicializar projeto Django
+#### [X] Tarefa 1.1 — Inicializar projeto Django
 - [X] **1.1.1** Criar o projeto Django com `django-admin startproject config .`
 - [X] **1.1.2** Verificar que `manage.py runserver` sobe sem erros
-- [ ] **1.1.3** Configurar `LANGUAGE_CODE = 'pt-br'` e `TIME_ZONE = 'America/Sao_Paulo'` em `settings.py`
-- [ ] **1.1.4** Configurar `STATIC_URL`, `STATICFILES_DIRS`, `MEDIA_URL` e `MEDIA_ROOT` em `settings.py`
-- [ ] **1.1.5** Adicionar `BASE_DIR / 'static'` ao `STATICFILES_DIRS`
-- [ ] **1.1.6** Adicionar `BASE_DIR / 'media'` ao `MEDIA_ROOT`
+- [X] **1.1.3** Configurar `LANGUAGE_CODE = 'pt-br'` e `TIME_ZONE = 'America/Sao_Paulo'` em `settings.py`
+- [X] **1.1.4** Configurar `STATIC_URL`, `STATICFILES_DIRS`, `MEDIA_URL` e `MEDIA_ROOT` em `settings.py`
+- [X] **1.1.5** Adicionar `BASE_DIR / 'static'` ao `STATICFILES_DIRS`
+- [X] **1.1.6** Adicionar `BASE_DIR / 'media'` ao `MEDIA_ROOT`
 
-#### Tarefa 1.2 — Configurar URLs globais com suporte a media em desenvolvimento
-- [ ] **1.2.1** Abrir `config/urls.py` e adicionar `+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)` condicionalmente para desenvolvimento
-- [ ] **1.2.2** Verificar que a rota de media está funcional
+#### [X] Tarefa 1.2 — Configurar URLs globais com suporte a media em desenvolvimento
+- [X] **1.2.1** Abrir `config/urls.py` e adicionar `+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)` condicionalmente para desenvolvimento
+- [X] **1.2.2** Verificar que a rota de media está funcional
 
-#### Tarefa 1.3 — Configurar TailwindCSS via CDN no template base
-- [ ] **1.3.1** Criar diretório `templates/` na raiz do projeto
-- [ ] **1.3.2** Adicionar `BASE_DIR / 'templates'` ao `DIRS` em `TEMPLATES` no `settings.py`
-- [ ] **1.3.3** Criar `templates/base.html` com estrutura HTML5 completa
-- [ ] **1.3.4** Incluir CDN do TailwindCSS no `<head>` do `base.html`
-- [ ] **1.3.5** Incluir CDN do Google Fonts (Playfair Display + Inter) no `<head>`
-- [ ] **1.3.6** Definir `<body class="bg-[#111111] text-[#F5E6C8] font-['Inter']">` no `base.html`
-- [ ] **1.3.7** Adicionar bloco `{% block content %}{% endblock %}` no `base.html`
+#### [X] Tarefa 1.3 — Configurar TailwindCSS via CDN no template base
+- [X] **1.3.1** Criar diretório `templates/` na raiz do projeto
+- [X] **1.3.2** Adicionar `BASE_DIR / 'templates'` ao `DIRS` em `TEMPLATES` no `settings.py`
+- [X] **1.3.3** Criar `templates/base.html` com estrutura HTML5 completa
+- [X] **1.3.4** Incluir CDN do TailwindCSS no `<head>` do `base.html`
+- [X] **1.3.5** Incluir CDN do Google Fonts (Playfair Display + Inter) no `<head>`
+- [X] **1.3.6** Definir `<body class="bg-[#111111] text-[#F5E6C8] font-['Inter']">` no `base.html`
+- [X] **1.3.7** Adicionar bloco `{% block content %}{% endblock %}` no `base.html`
 
 ---
 
