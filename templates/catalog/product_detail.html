@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} | Confeitaria Artesanal{% endblock %}
+
+{% block content %}
+<section class="py-12 bg-[#111111] min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumbs / Back Link -->
+        <nav class="mb-8">
+            <a href="{% url 'catalog:product_list' %}" class="inline-flex items-center text-[#A89880] hover:text-[#C9A227] transition-colors text-sm font-medium group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Voltar ao Catálogo
+            </a>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <!-- Product Image Section (PRD 9.4) -->
+            <div class="relative group">
+                <div class="aspect-square rounded-2xl overflow-hidden border border-[#3D2E24] bg-[#1E1A18] shadow-2xl">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover">
+                    {% else %}
+                        <div class="w-full h-full flex flex-col items-center justify-center text-[#3D2E24]">
+                            <span class="text-8xl mb-4">🍰</span>
+                            <p class="text-sm font-medium uppercase tracking-widest opacity-50">Imagem em breve</p>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                {% if product.is_featured %}
+                <div class="absolute top-6 left-6">
+                    <span class="px-4 py-1.5 bg-[#C9A227]/20 backdrop-blur-md text-[#C9A227] text-xs font-bold uppercase tracking-[0.2em] rounded-full border border-[#C9A227]/40 shadow-lg">
+                        Destaque da Casa
+                    </span>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Product Info Section -->
+            <div class="flex flex-col">
+                <div class="mb-6">
+                    <a href="{% url 'catalog:product_list' %}?categoria={{ product.category.slug }}" class="text-[#C9A227] font-medium uppercase tracking-[0.3em] text-xs hover:underline decoration-[#C9A227]/40 underline-offset-4">
+                        {{ product.category.name }}
+                    </a>
+                    <h1 class="mt-4 font-['Playfair_Display'] text-4xl lg:text-5xl font-bold text-[#F5E6C8] leading-tight">
+                        {{ product.name }}
+                    </h1>
+                </div>
+
+                <div class="flex items-center gap-6 mb-8">
+                    <span class="font-['Playfair_Display'] text-4xl text-[#C9A227] font-bold">
+                        R$ {{ product.price|floatformat:2 }}
+                    </span>
+                    
+                    {% if product.is_available %}
+                        <span class="px-3 py-1 bg-[#4A7C59]/20 text-[#4A7C59] text-[10px] font-bold uppercase tracking-widest rounded-full border border-[#4A7C59]/30">
+                            Disponível
+                        </span>
+                    {% else %}
+                        <span class="px-3 py-1 bg-[#CC2936]/20 text-[#CC2936] text-[10px] font-bold uppercase tracking-widest rounded-full border border-[#CC2936]/30">
+                            Sob Encomenda / Indisponível
+                        </span>
+                    {% endif %}
+                </div>
+
+                <div class="prose prose-invert max-w-none">
+                    <h3 class="text-sm font-medium text-[#F5E6C8] uppercase tracking-widest mb-4 border-b border-[#3D2E24] pb-2 inline-block">
+                        Descrição
+                    </h3>
+                    <p class="font-['Inter'] text-lg text-[#A89880] leading-relaxed font-light">
+                        {% if product.description %}
+                            {{ product.description|linebreaks }}
+                        {% else %}
+                            Este produto artesanal é preparado com ingredientes selecionados para proporcionar uma experiência única de sabor e textura. Entre em contato para mais detalhes sobre a composição e opções de personalização.
+                        {% endif %}
+                    </p>
+                </div>
+
+                <!-- Action / CTA (Optional but good for UX) -->
+                <div class="mt-12 pt-8 border-t border-[#3D2E24]">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="window.print()" class="px-8 py-4 bg-[#1E1A18] hover:bg-[#2C2420] text-[#F5E6C8] font-semibold rounded-lg transition-all duration-200 border border-[#3D2E24] hover:border-[#C9A227]/40 flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                            </svg>
+                            Imprimir Detalhes
+                        </button>
+                        <a href="{% url 'catalog:product_list' %}" class="px-8 py-4 bg-[#6B3A2A] hover:bg-[#4A2318] text-[#F5E6C8] font-semibold rounded-lg transition-all duration-200 border border-[#C9A227]/30 hover:border-[#C9A227]/60 text-center">
+                            Ver Outros Delícias
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

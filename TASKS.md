@@ -87,70 +87,70 @@
 
 ---
 
-### Sprint 3 — Views, URLs e Templates
+### [X] Sprint 3 — Views, URLs e Templates
 
 #### Tarefa 3.1 — Configurar URLs da app `catalog`
-- [ ] **3.1.1** Criar arquivo `catalog/urls.py`
-- [ ] **3.1.2** Definir `app_name = 'catalog'`
-- [ ] **3.1.3** Adicionar rota `''` apontando para `HomeView` com `name='home'`
-- [ ] **3.1.4** Adicionar rota `'catalogo/'` apontando para `ProductListView` com `name='product_list'`
-- [ ] **3.1.5** Adicionar rota `'catalogo/<slug:slug>/'` apontando para `ProductDetailView` com `name='product_detail'`
-- [ ] **3.1.6** Incluir `catalog.urls` no `config/urls.py` com `include('catalog.urls')`
+- [x] **3.1.1** Criar arquivo `catalog/urls.py`
+- [x] **3.1.2** Definir `app_name = 'catalog'`
+- [x] **3.1.3** Adicionar rota `''` apontando para `HomeView` com `name='home'`
+- [x] **3.1.4** Adicionar rota `'catalogo/'` apontando para `ProductListView` com `name='product_list'`
+- [x] **3.1.5** Adicionar rota `'catalogo/<slug:slug>/'` apontando para `ProductDetailView` com `name='product_detail'`
+- [x] **3.1.6** Incluir `catalog.urls` no `config/urls.py` com `include('catalog.urls')`
 
 #### Tarefa 3.2 — Criar `HomeView`
-- [ ] **3.2.1** Abrir `catalog/views.py` e importar `TemplateView`, `ListView`, `DetailView` do Django
-- [ ] **3.2.2** Criar `HomeView(TemplateView)` com `template_name = 'catalog/home.html'`
-- [ ] **3.2.3** Sobrescrever `get_context_data()` para adicionar `featured_products` (produtos com `is_featured=True` e `is_available=True`, limitado a 6)
+- [x] **3.2.1** Abrir `catalog/views.py` e importar `TemplateView`, `ListView`, `DetailView` do Django
+- [x] **3.2.2** Criar `HomeView(TemplateView)` com `template_name = 'catalog/home.html'`
+- [x] **3.2.3** Sobrescrever `get_context_data()` para adicionar `featured_products` (produtos com `is_featured=True` e `is_available=True`, limitado a 6)
 
 #### Tarefa 3.3 — Criar `ProductListView`
-- [ ] **3.3.1** Criar `ProductListView(ListView)` com:
+- [x] **3.3.1** Criar `ProductListView(ListView)` com:
   - `model = Product`
   - `template_name = 'catalog/product_list.html'`
   - `context_object_name = 'products'`
   - `paginate_by = 12`
-- [ ] **3.3.2** Sobrescrever `get_queryset()` para filtrar por `is_available=True`
-- [ ] **3.3.3** Adicionar filtro por `category` (parâmetro GET `?categoria=<slug>`)
-- [ ] **3.3.4** Adicionar filtro por busca (parâmetro GET `?busca=<termo>`) usando `icontains` no campo `name`
-- [ ] **3.3.5** Sobrescrever `get_context_data()` para adicionar `categories` (todas as categorias) e `current_category` (categoria selecionada)
+- [x] **3.3.2** Sobrescrever `get_queryset()` para filtrar por `is_available=True`
+- [x] **3.3.3** Adicionar filtro por `category` (parâmetro GET `?categoria=<slug>`)
+- [x] **3.3.4** Adicionar filtro por busca (parâmetro GET `?busca=<termo>`) usando `icontains` no campo `name`
+- [x] **3.3.5** Sobrescrever `get_context_data()` para adicionar `categories` (todas as categorias) e `current_category` (categoria selecionada)
 
 #### Tarefa 3.4 — Criar `ProductDetailView`
-- [ ] **3.4.1** Criar `ProductDetailView(DetailView)` com:
+- [x] **3.4.1** Criar `ProductDetailView(DetailView)` com:
   - `model = Product`
   - `template_name = 'catalog/product_detail.html'`
   - `context_object_name = 'product'`
-- [ ] **3.4.2** Verificar que o `slug_field` e `slug_url_kwarg` estão configurados corretamente (padrão do DetailView)
+- [x] **3.4.2** Verificar que o `slug_field` e `slug_url_kwarg` estão configurados corretamente (padrão do DetailView)
 
-#### Tarefa 3.5 — Criar template `base.html`
-- [ ] **3.5.1** Criar `templates/catalog/base.html` (ou mover para `templates/base.html` e herdar nos demais)
-- [ ] **3.5.2** Incluir `<head>` com charset, viewport, título dinâmico `{% block title %}{% endblock %}`, Tailwind CDN e Google Fonts
-- [ ] **3.5.3** Adicionar componente navbar conforme design system (seção 9.8)
-- [ ] **3.5.4** Adicionar bloco `{% block content %}{% endblock %}`
-- [ ] **3.5.5** Adicionar componente footer conforme design system (seção 9.9)
+#### [X] Tarefa 3.5 — Criar template `base.html`
+- [x] **3.5.1** Criar `templates/catalog/base.html` (ou mover para `templates/base.html` e herdar nos demais)
+- [x] **3.5.2** Incluir `<head>` com charset, viewport, título dinâmico `{% block title %}{% endblock %}`, Tailwind CDN e Google Fonts
+- [x] **3.5.3** Adicionar componente navbar conforme design system (seção 9.8)
+- [x] **3.5.4** Adicionar bloco `{% block content %}{% endblock %}`
+- [x] **3.5.5** Adicionar componente footer conforme design system (seção 9.9)
 
-#### Tarefa 3.6 — Criar template `home.html`
-- [ ] **3.6.1** Criar `templates/catalog/home.html` com `{% extends 'base.html' %}`
-- [ ] **3.6.2** Implementar seção hero com gradiente, título da confeitaria e subtítulo
-- [ ] **3.6.3** Adicionar botão "Ver Catálogo" com link para `{% url 'catalog:product_list' %}`
-- [ ] **3.6.4** Implementar seção "Destaques" com grid de cards usando `featured_products`
-- [ ] **3.6.5** Renderizar cada card de produto conforme design system (seção 9.6)
-- [ ] **3.6.6** Adicionar condicional `{% if featured_products %}` para exibir seção somente quando houver destaques
+#### [X] Tarefa 3.6 — Criar template `home.html`
+- [x] **3.6.1** Criar `templates/catalog/home.html` com `{% extends 'base.html' %}`
+- [x] **3.6.2** Implementar seção hero com gradiente, título da confeitaria e subtítulo
+- [x] **3.6.3** Adicionar botão "Ver Catálogo" com link para `{% url 'catalog:product_list' %}`
+- [x] **3.6.4** Implementar seção "Destaques" com grid de cards usando `featured_products`
+- [x] **3.6.5** Renderizar cada card de produto conforme design system (seção 9.6)
+- [x] **3.6.6** Adicionar condicional `{% if featured_products %}` para exibir seção somente quando houver destaques
 
-#### Tarefa 3.7 — Criar template `product_list.html`
-- [ ] **3.7.1** Criar `templates/catalog/product_list.html` com `{% extends 'base.html' %}`
-- [ ] **3.7.2** Implementar barra de filtros: campo de busca (`?busca=`) e select de categorias (`?categoria=`)
-- [ ] **3.7.3** Implementar `<form method="get">` para submissão dos filtros
-- [ ] **3.7.4** Implementar grid de cards de produto usando `products`
-- [ ] **3.7.5** Renderizar badge de destaque condicionalmente se `product.is_featured`
-- [ ] **3.7.6** Renderizar badge de disponibilidade (disponível/indisponível) conforme `product.is_available`
-- [ ] **3.7.7** Adicionar mensagem "Nenhum produto encontrado." quando `products` estiver vazio
-- [ ] **3.7.8** Implementar paginação com links de próxima/anterior página usando `page_obj`
+#### [X] Tarefa 3.7 — Criar template `product_list.html`
+- [x] **3.7.1** Criar `templates/catalog/product_list.html` com `{% extends 'base.html' %}`
+- [x] **3.7.2** Implementar barra de filtros: campo de busca (`?busca=`) e select de categorias (`?categoria=`)
+- [x] **3.7.3** Implementar `<form method="get">` para submissão dos filtros
+- [x] **3.7.4** Implementar grid de cards de produto usando `products`
+- [x] **3.7.5** Renderizar badge de destaque condicionalmente se `product.is_featured`
+- [x] **3.7.6** Renderizar badge de disponibilidade (disponível/indisponível) conforme `product.is_available`
+- [x] **3.7.7** Adicionar mensagem "Nenhum produto encontrado." quando `products` estiver vazio
+- [x] **3.7.8** Implementar paginação com links de próxima/anterior página usando `page_obj`
 
-#### Tarefa 3.8 — Criar template `product_detail.html`
-- [ ] **3.8.1** Criar `templates/catalog/product_detail.html` com `{% extends 'base.html' %}`
-- [ ] **3.8.2** Implementar layout de duas colunas (foto | informações) em desktop, coluna única em mobile
-- [ ] **3.8.3** Exibir foto do produto com fallback para placeholder se sem imagem
-- [ ] **3.8.4** Exibir nome, categoria (com link para listagem filtrada), preço formatado, descrição e status de disponibilidade
-- [ ] **3.8.5** Adicionar link "← Voltar ao Catálogo" para `{% url 'catalog:product_list' %}`
+#### [X] Tarefa 3.8 — Criar template `product_detail.html`
+- [x] **3.8.1** Criar `templates/catalog/product_detail.html` com `{% extends 'base.html' %}`
+- [x] **3.8.2** Implementar layout de duas colunas (foto | informações) em desktop, coluna única em mobile
+- [x] **3.8.3** Exibir foto do produto com fallback para placeholder se sem imagem
+- [x] **3.8.4** Exibir nome, categoria (com link para listagem filtrada), preço formatado, descrição e status de disponibilidade
+- [x] **3.8.5** Adicionar link "← Voltar ao Catálogo" para `{% url 'catalog:product_list' %}`
 
 ---
 

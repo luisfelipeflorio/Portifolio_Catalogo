@@ -45,8 +45,33 @@
         }
     </style>
 </head>
-<body class="bg-[#111111] text-[#F5E6C8] font-['Inter']">
-    {% block content %}
-    {% endblock %}
+<body class="bg-[#111111] text-[#F5E6C8] font-['Inter'] flex flex-col min-h-screen">
+    <!-- Navbar (PRD 9.8) -->
+    <nav class="sticky top-0 z-50 bg-[#111111]/90 backdrop-blur-md border-b border-[#3D2E24]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+            <!-- Logo / Nome da confeitaria -->
+            <a href="{% url 'catalog:home' %}" class="font-['Playfair_Display'] text-xl font-bold text-[#C9A227] tracking-wide">
+                Confeitaria Artesanal
+            </a>
+            <!-- Links -->
+            <div class="flex gap-6">
+                <a href="{% url 'catalog:home' %}" class="text-[#A89880] hover:text-[#F5E6C8] transition-colors text-sm font-medium">Início</a>
+                <a href="{% url 'catalog:product_list' %}" class="text-[#A89880] hover:text-[#F5E6C8] transition-colors text-sm font-medium">Catálogo</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Rodapé (PRD 9.9) -->
+    <footer class="bg-[#1E1A18] border-t border-[#3D2E24] py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="font-['Playfair_Display'] text-[#C9A227] text-lg font-semibold">Confeitaria Artesanal</p>
+            <p class="mt-2 text-sm text-[#A89880]">Feito com carinho.</p>
+        </div>
+    </footer>
 </body>
 </html>

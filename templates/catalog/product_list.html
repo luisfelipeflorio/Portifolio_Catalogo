@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block title %}Catálogo | Confeitaria Artesanal{% endblock %}
+
+{% block content %}
+<section class="py-12 bg-[#111111] min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header & Filters (PRD 9.5) -->
+        <div class="mb-12">
+            <h1 class="font-['Playfair_Display'] text-4xl font-bold text-[#F5E6C8] tracking-wide mb-8 text-center sm:text-left">
+                Nosso Catálogo
+            </h1>
+            
+            <form method="get" class="grid grid-cols-1 md:grid-cols-12 gap-4">
+                <!-- Busca -->
+                <div class="md:col-span-6 lg:col-span-7">
+                    <div class="relative">
+                        <input type="text" name="busca" value="{{ request.GET.busca }}"
+                               class="w-full px-4 py-3 bg-[#1E1A18] border border-[#3D2E24] rounded-lg text-[#F5E6C8] placeholder-[#A89880] focus:outline-none focus:border-[#C9A227]/60 focus:ring-1 focus:ring-[#C9A227]/30 transition-colors duration-200"
+                               placeholder="O que você está procurando?">
+                        <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-[#A89880] hover:text-[#C9A227] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Categorias -->
+                <div class="md:col-span-4 lg:col-span-3">
+                    <select name="categoria" onchange="this.form.submit()"
+                            class="w-full px-4 py-3 bg-[#1E1A18] border border-[#3D2E24] rounded-lg text-[#F5E6C8] cursor-pointer focus:outline-none focus:border-[#C9A227]/60 transition-colors duration-200">
+                        <option value="">Todas as categorias</option>
+                        {% for category in categories %}
+                            <option value="{{ category.slug }}" {% if request.GET.categoria == category.slug %}selected{% endif %}>
+                                {{ category.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Botão Filtrar (Mobile/Auxiliar) -->
+                <div class="md:col-span-2">
+                    <button type="submit" class="w-full px-4 py-3 bg-[#6B3A2A] hover:bg-[#4A2318] text-[#F5E6C8] font-medium rounded-lg transition-all duration-200 border border-[#C9A227]/30">
+                        Filtrar
+                    </button>
+                </div>
+            </form>
+
+            {% if request.GET.busca or request.GET.categoria %}
+            <div class="mt-4 flex items-center gap-2">
+                <span class="text-xs text-[#A89880] uppercase tracking-wider">Filtros ativos:</span>
+                <a href="{% url 'catalog:product_list' %}" class="text-xs text-[#C9A227] hover:text-[#F5E6C8] underline">Limpar tudo</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Product Grid (PRD 9.6, 9.7) -->
+        {% if products %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for product in products %}
+                <a href="{{ product.get_absolute_url }}" class="group bg-[#1E1A18] border border-[#3D2E24] rounded-xl overflow-hidden hover:border-[#C9A227]/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#C9A227]/5 flex flex-col">
+                    <!-- Image -->
+                    <div class="relative overflow-hidden aspect-square">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        {% else %}
+                            <div class="w-full h-full bg-[#2C2420] flex items-center justify-center">
+                                <span class="text-[#3D2E24] text-4xl">🍰</span>
+                            </div>
+                        {% endif %}
+                        
+                        <!-- Badges (PRD 9.4) -->
+                        <div class="absolute top-3 left-3 flex flex-col gap-2">
+                            {% if product.is_featured %}
+                            <span class="px-2 py-0.5 bg-[#C9A227]/20 backdrop-blur-md text-[#C9A227] text-[9px] font-bold uppercase tracking-widest rounded border border-[#C9A227]/40">
+                                Destaque
+                            </span>
+                            {% endif %}
+                            
+                            {% if not product.is_available %}
+                            <span class="px-2 py-0.5 bg-[#CC2936]/20 backdrop-blur-md text-[#CC2936] text-[9px] font-bold uppercase tracking-widest rounded border border-[#CC2936]/40">
+                                Indisponível
+                            </span>
+                            {% endif %}
+                        </div>
+
+                        <!-- Overlay gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#111111]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-4 flex flex-col flex-grow">
+                        <span class="text-[10px] text-[#C9A227] font-medium uppercase tracking-[0.2em]">{{ product.category.name }}</span>
+                        <h3 class="mt-1 font-['Playfair_Display'] text-lg text-[#F5E6C8] font-semibold group-hover:text-[#C9A227] transition-colors leading-tight">{{ product.name }}</h3>
+                        <p class="mt-2 text-sm text-[#A89880] line-clamp-2 font-light leading-snug">
+                            {{ product.description }}
+                        </p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <span class="font-['Playfair_Display'] text-xl text-[#C9A227] font-bold">R$ {{ product.price|floatformat:2 }}</span>
+                            <span class="text-[#F5E6C8] text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">Ver mais</span>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination (PRD 9.7) -->
+            {% if is_paginated %}
+            <div class="mt-16 flex justify-center">
+                <nav class="flex items-center gap-2">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.busca %}&busca={{ request.GET.busca }}{% endif %}" 
+                           class="p-2 text-[#A89880] hover:text-[#C9A227] hover:bg-[#1E1A18] rounded-lg transition-all border border-transparent hover:border-[#3D2E24]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </a>
+                    {% endif %}
+
+                    <span class="px-4 py-2 text-sm text-[#F5E6C8] font-medium bg-[#1E1A18] border border-[#3D2E24] rounded-lg">
+                        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.busca %}&busca={{ request.GET.busca }}{% endif %}" 
+                           class="p-2 text-[#A89880] hover:text-[#C9A227] hover:bg-[#1E1A18] rounded-lg transition-all border border-transparent hover:border-[#3D2E24]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    {% endif %}
+                </nav>
+            </div>
+            {% endif %}
+
+        {% else %}
+            <!-- Empty State -->
+            <div class="py-20 text-center">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#1E1A18] border border-[#3D2E24] mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#A89880]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-['Playfair_Display'] text-[#F5E6C8] font-semibold">Nenhum produto encontrado</h3>
+                <p class="mt-2 text-[#A89880] max-w-xs mx-auto">Tente ajustar seus filtros ou buscar por outro termo.</p>
+                <a href="{% url 'catalog:product_list' %}" class="mt-8 inline-block px-6 py-3 bg-transparent hover:bg-[#2C2420] text-[#C9A227] font-medium rounded-lg border border-[#C9A227]/50 transition-all duration-200">
+                    Limpar Filtros
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
