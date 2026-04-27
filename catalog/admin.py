@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import Category, Product
 
+admin.site.site_header = 'Administração - Confeitaria Artesanal'
+admin.site.site_title = 'Confeitaria Artesanal'
+admin.site.index_title = 'Gerenciamento do Catálogo'
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

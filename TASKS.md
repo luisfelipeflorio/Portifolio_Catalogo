@@ -154,41 +154,41 @@
 
 ---
 
-### Sprint 4 — Refinamentos de UI e Ajustes Finais
+### [X] Sprint 4 — Refinamentos de UI e Ajustes Finais
 
 #### Tarefa 4.1 — Criar imagem placeholder para produtos sem foto
-- [ ] **4.1.1** Adicionar um arquivo `static/images/placeholder.jpg` (imagem neutra)
-- [ ] **4.1.2** Usar `{% if product.image %}` nos templates para exibir placeholder quando necessário
-- [ ] **4.1.3** Verificar que o placeholder é exibido corretamente nos templates `product_list.html` e `product_detail.html`
+- [x] **4.1.1** Adicionar um arquivo `static/images/placeholder.jpg` (imagem neutra)
+- [x] **4.1.2** Usar `{% if product.image %}` nos templates para exibir placeholder quando necessário
+- [x] **4.1.3** Verificar que o placeholder é exibido corretamente nos templates `product_list.html` e `product_detail.html`
 
 #### Tarefa 4.2 — Formatar preço em Real brasileiro nos templates
-- [ ] **4.2.1** Verificar se a localização está habilitada (`USE_L10N = True` em `settings.py`)
-- [ ] **4.2.2** Usar o filtro `{{ product.price|floatformat:2 }}` nos templates ou criar um template tag customizado para formato brasileiro
-- [ ] **4.2.3** Exibir preço no formato "R$ 00,00" em todos os cards e na página de detalhe
+- [x] **4.2.1** Verificar se a localização está habilitada (`USE_L10N = True` em `settings.py`)
+- [x] **4.2.2** Usar o filtro `{{ product.price|floatformat:2 }}` nos templates ou criar um template tag customizado para formato brasileiro
+- [x] **4.2.3** Exibir preço no formato "R$ 00,00" em todos os cards e na página de detalhe
 
 #### Tarefa 4.3 — Garantir responsividade em todas as páginas
-- [ ] **4.3.1** Testar a `home.html` em viewport mobile (375px), tablet (768px) e desktop (1280px)
-- [ ] **4.3.2** Testar a `product_list.html` em todos os viewports verificando o grid responsivo
-- [ ] **4.3.3** Testar a `product_detail.html` verificando o layout de colunas em mobile
-- [ ] **4.3.4** Corrigir eventuais quebras de layout identificadas nos testes
+- [x] **4.3.1** Testar a `home.html` em viewport mobile (375px), tablet (768px) e desktop (1280px)
+- [x] **4.3.2** Testar a `product_list.html` em todos os viewports verificando o grid responsivo
+- [x] **4.3.3** Testar a `product_detail.html` verificando o layout de colunas em mobile
+- [x] **4.3.4** Corrigir eventuais quebras de layout identificadas nos testes
 
 #### Tarefa 4.4 — Ajustes no Django Admin
-- [ ] **4.4.1** Personalizar `admin.site.site_header` para o nome da confeitaria
-- [ ] **4.4.2** Personalizar `admin.site.site_title` e `admin.site.index_title`
-- [ ] **4.4.3** Verificar que o upload de imagem no Admin gera a pré-visualização corretamente
+- [x] **4.4.1** Personalizar `admin.site.site_header` para o nome da confeitaria
+- [x] **4.4.2** Personalizar `admin.site.site_title` e `admin.site.index_title`
+- [x] **4.4.3** Verificar que o upload de imagem no Admin gera a pré-visualização corretamente
 
 #### Tarefa 4.5 — Cadastrar produtos reais no catálogo
-- [ ] **4.5.1** Cadastrar as categorias reais (ex: Entremets, Tortas)
-- [ ] **4.5.2** Cadastrar os produtos com as fotos presentes em `images/`
-- [ ] **4.5.3** Marcar os produtos principais como `is_featured=True`
-- [ ] **4.5.4** Verificar que todos os produtos aparecem corretamente no catálogo
+- [x] **4.5.1** Cadastrar as categorias reais (ex: Entremets, Tortas)
+- [x] **4.5.2** Cadastrar os produtos com as fotos presentes em `images/`
+- [x] **4.5.3** Marcar os produtos principais como `is_featured=True`
+- [x] **4.5.4** Verificar que todos os produtos aparecem corretamente no catálogo
 
 #### Tarefa 4.6 — Revisão final de código
-- [ ] **4.6.1** Verificar que todo o código Python usa aspas simples
-- [ ] **4.6.2** Verificar conformidade com PEP 8 (indentação, nomes de variáveis, comprimento de linha)
-- [ ] **4.6.3** Verificar que toda a interface exibida ao usuário está em português brasileiro
-- [ ] **4.6.4** Remover prints, comentários desnecessários e código morto
-- [ ] **4.6.5** Verificar que não há funcionalidades além do escopo definido neste PRD
+- [x] **4.6.1** Verificar que todo o código Python usa aspas simples
+- [x] **4.6.2** Verificar conformidade com PEP 8 (indentação, nomes de variáveis, comprimento de linha)
+- [x] **4.6.3** Verificar que toda a interface exibida ao usuário está em português brasileiro
+- [x] **4.6.4** Remover prints, comentários desnecessários e código morto
+- [x] **4.6.5** Verificar que não há funcionalidades além do escopo definido neste PRD
 
 ---
 
