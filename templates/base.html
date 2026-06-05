@@ -48,28 +48,25 @@
         }
     </script>
 
-    <style type="text/tailwindcss">
-        @layer base {
-            body {
-                @apply bg-[#0E0C0B] text-[#F2E2C4] font-sans antialiased;
-            }
-            ::selection {
-                background-color: #C9A22740;
-                color: #F2E2C4;
-            }
-            :focus-visible {
-                @apply outline outline-2 outline-offset-2 outline-[#C9A227];
-            }
+    <style>
+        body {
+            background-color: #0E0C0B;
         }
-        @layer utilities {
-            .text-balance { text-wrap: balance; }
+        ::selection {
+            background-color: #C9A22740;
+            color: #F2E2C4;
         }
+        :focus-visible {
+            outline: 2px solid #C9A227;
+            outline-offset: 2px;
+        }
+        .text-balance { text-wrap: balance; }
     </style>
 </head>
-<body class="bg-[#0E0C0B] text-[#F2E2C4] font-sans flex flex-col min-h-screen">
+<body class="text-[#F2E2C4] font-sans flex flex-col min-h-screen relative">
 
     <!-- Navbar -->
-    <header role="banner">
+    <header role="banner" class="relative z-50">
         <nav aria-label="Navegação principal" class="sticky top-0 z-50 bg-[#0E0C0B]/95 backdrop-blur-xl border-b border-[#332820]">
             <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 flex items-center justify-between h-16">
                 <!-- Logo -->
@@ -89,13 +86,13 @@
         </nav>
     </header>
 
-    <main class="flex-grow" id="main-content">
+    <main class="flex-grow relative z-10" id="main-content">
         {% block content %}
         {% endblock %}
     </main>
 
     <!-- Rodapé -->
-    <footer role="contentinfo" class="bg-[#191512] border-t border-[#332820] py-10 mt-20">
+    <footer role="contentinfo" class="relative z-10 bg-[#191512]/90 backdrop-blur-sm border-t border-[#332820] py-10 mt-20">
         <div class="max-w-7xl mx-auto px-5 text-center">
             <p class="font-display text-[#C9A227] text-xl font-semibold tracking-wide">Confeitaria Artesanal</p>
             <p class="mt-2 text-sm text-[#8A7A6A] font-light">Feito com carinho.</p>

@@ -4,8 +4,15 @@
 {% block title %}Catálogo | Confeitaria Artesanal{% endblock %}
 
 {% block content %}
-<section class="py-14 bg-[#0E0C0B] min-h-screen">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+<section class="py-14 min-h-screen relative"
+    style="background-image: url('{% static 'images/vitrine.png' %}');
+           background-attachment: fixed;
+           background-size: cover;
+           background-position: center;">
+    <!-- Background overlay com gradiente -->
+    <div aria-hidden="true" class="absolute inset-0 pointer-events-none"
+         style="background: linear-gradient(180deg, #0E0C0B 0%, rgba(14,12,11,0.72) 30%, rgba(14,12,11,0.72) 70%, #0E0C0B 100%);"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
 
         <!-- Page header -->
         <div class="mb-12">

@@ -6,7 +6,7 @@
 {% block content %}
 
 <!-- Hero com Scroll Expansion -->
-<section id="scroll-hero" class="relative bg-[#0E0C0B] overflow-hidden" style="height: 100dvh;">
+<section id="scroll-hero" class="relative overflow-hidden" style="height: 100dvh;">
 
     <!-- Ambient glow (some on top) -->
     <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0">
@@ -251,8 +251,15 @@
 
 <!-- Featured Products -->
 {% if featured_products %}
-<section id="destaques" class="py-24 bg-[#0E0C0B]" aria-labelledby="destaques-heading">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+<section id="destaques" class="py-24 relative" aria-labelledby="destaques-heading"
+         style="background-image: url('{% static 'images/vitrine.png' %}');
+                background-attachment: fixed;
+                background-size: cover;
+                background-position: center;">
+
+    <!-- Overlay escuro sobre a vitrine para garantir legibilidade dos cards -->
+    <div aria-hidden="true" class="absolute inset-0 pointer-events-none" style="background: rgba(14,12,11,0.80);"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
 
         <!-- Section header -->
         <div class="flex items-end justify-between mb-14">
